@@ -9,12 +9,18 @@ body{
     margin: calc((100vh - 500px)/2) auto 0 auto;
 }
 
-#login-main h2{
-    padding: 20px 0;
+
+@media (max-width: 1100px) {
+    
+    #divLogin{
+        width: 400px !important;
+    }
+    #cardLogin{
+        padding: 15px !important;
+    }
 }
 
-#login-main p{
-    padding: 10px 0;
+html, body {
+    margin: 0;
+    height: 100%;
 }
-
-

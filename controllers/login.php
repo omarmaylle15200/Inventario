@@ -1,6 +1,8 @@
 
 <?php
 
+include_once 'dtos/respuestadto.php';
+
 class Login extends SessionController
 {
 
@@ -26,13 +28,21 @@ class Login extends SessionController
         $numeroDocumento = $data["numeroDocumento"];
         $clave = $data["clave"];
 
+        $expense = new ExpensesModel();
+
+        $respuesta=new RespuestaDto();
+        $respuesta->status=false;
+        $respuesta->message="HI";
+
         //validate data
         if (empty($numeroDocumento) || empty($clave)) {
-            echo json_encode("Hi");
+            echo json_encode($respuesta);
             return ;
         }
+        $respuesta->status=true;
+        $respuesta->message="OK";
+        echo json_encode($respuesta);
 
-        echo json_encode($numeroDocumento);
         return;
     }
 

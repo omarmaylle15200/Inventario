@@ -1,6 +1,6 @@
 <?php
 
-define('URL', 'http://localhost/expense-app/');
+define('URL', 'http://localhost/Inventario/');
 
 define('HOST', 'localhost');
 define('DB', 'Inventario');

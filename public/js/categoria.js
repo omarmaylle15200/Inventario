@@ -1,7 +1,10 @@
 
+var tblCategoria=document.getElementById("tblCategoria");
+var tblCategoriaData
 
 document.addEventListener("DOMContentLoaded", async function (event) {
   obtenerTodos();
+  inicializarTabla();
 });
 
 
@@ -13,4 +16,9 @@ async function obtenerTodos() {
     }
   });
   console.log(await request.json())
+}
+
+async function inicializarTabla(){
+  tblCategoriaData = new simpleDatatables.DataTable(tblCategoria);
+
 }

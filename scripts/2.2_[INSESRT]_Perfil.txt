@@ -2,4 +2,4 @@ INSERT INTO `perfil`(`Nombre`)
 VALUES ('Administrador');
 
 INSERT INTO `perfil`(`Nombre`) 
-VALUES ('Gestor');
+VALUES ('Vendedor');

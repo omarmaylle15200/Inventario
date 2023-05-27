@@ -39,14 +39,17 @@
         <section class="section dashboard">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            Bienvenido
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
+                    <table id="tblCategoria">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -62,6 +65,8 @@
     <script src="<?php echo constant('URL'); ?>public/vendor/tinymce/tinymce.min.js"></script>
 
     <!-- Template Main JS File -->
+    <script src="./public/js/main.js"></script>
+
     <script src="./public/js/categoria.js"></script>
 
 

@@ -1,0 +1,28 @@
+DELIMITER //
+create PROCEDURE sp_modificarProveedor(in v_idProveedor int,
+                                       in v_idTipoDocumento int,
+                                      in v_numeroDocumento varchar(20),
+    								  in v_nombre varchar(100),
+                                       in v_apellidos varchar(100),
+                                      in v_cargo varchar(100),
+                                      in v_direccion text,
+                                      in v_email varchar(100),
+                                      in v_telefono varchar(20),
+                                      in v_celular varchar(20),
+                                      in v_idUsuarioModificacion int)
+BEGIN
+	
+    update proveedor
+    SET
+    	NumeroDocumento=v_numeroDocumento,
+    	Nombre=v_nombre,
+        Cargo=v_cargo,
+        Direccion=v_direccion,
+        Email=v_email,
+        Telefono=v_telefono,
+        Celular=v_celular,
+        FechaModificacion=now(),
+        IdUsuarioModificacion=v_idUsuarioModificacion
+    WHERE
+    IdProveedor=v_idProveedor;
+END //

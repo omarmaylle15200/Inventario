@@ -1,0 +1,18 @@
+DELIMITER //
+create PROCEDURE sp_modificarCategoria(in v_idCategoria int,
+                                       in v_nombre varchar(50),
+                                       in v_descripcion varchar(100),
+                                       in v_esActivo bit,
+                                       in v_idUsuarioModificacion int)
+BEGIN
+	
+    update categoria
+    SET
+    	Nombre=v_nombre,
+        Descripcion=v_descripcion,
+        FechaModificacion=now(),
+        EsActivo=v_esActivo,
+        IdUsuarioModificacion=v_idUsuarioModificacion
+    WHERE
+    IdCategoria=v_idCategoria;
+END //

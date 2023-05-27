@@ -2,37 +2,24 @@
 
 class UsuarioModel extends Model
 {
-
-    private $idUsuario;
-    private $idTipoDocumento;
-    private $numeroDocumento;
-    private $idPerfil;
-    private $nombre;
-    private $apellidoPaterno;
-    private $apellidoMaterno;
-    private $direccion;
-    private $telefono;
-    private $email;
-    private $esActivo;
+    public $idUsuario;
+    public $idTipoDocumento;
+    public $numeroDocumento;
+    public $idPerfil;
+    public $nombre;
+    public $apellidoPaterno;
+    public $apellidoMaterno;
+    public $direccion;
+    public $telefono;
+    public $email;
+    public $esActivo;
 
     public function __construct()
     {
         parent::__construct();
-
-        $this->idUsuario = 0;
-        $this->idTipoDocumento = 0;
-        $this->numeroDocumento = '';
-        $this->idPerfil = 0;
-        $this->nombre = '';
-        $this->apellidoPaterno = '';
-        $this->apellidoMaterno = '';
-        $this->direccion = '';
-        $this->telefono = '';
-        $this->email = '';
-        $this->esActivo = false;
     }
 
-    public function getAll()
+    public function obtenerTodos()
     {
         $items = [];
 
@@ -61,7 +48,7 @@ class UsuarioModel extends Model
     /**
      *  Gets an item
      */
-    public function get($id)
+    public function obtener($id)
     {
         try {
             $query = $this->prepare('SELECT * FROM users WHERE id = :id');
@@ -85,5 +72,33 @@ class UsuarioModel extends Model
             return false;
         }
     }
+
+    public function validar($numeroDocumento,$clave)
+    {
+        try {
+            $query = $this->prepare('call sp_validarUsuario(:numeroDocumento,:clave)');
+            $query->bindParam(':numeroDocumento', $numeroDocumento, PDO::PARAM_STR);
+            $query->bindParam(':clave', $clave, PDO::PARAM_STR);
+            $query->execute();
+            $usuario = $query->fetch(PDO::FETCH_ASSOC);
+
+            $this->idUsuario =$usuario['IdUsuario'];
+            $this->idTipoDocumento = $usuario['IdTipoDocumento'];
+            $this->numeroDocumento = $usuario['NumeroDocumento'];
+            $this->idPerfil = $usuario['IdPerfil'];
+            $this->nombre = $usuario['Nombre'];
+            $this->apellidoPaterno = $usuario['ApellidoPaterno'];
+            $this->apellidoMaterno = $usuario['ApellidoMaterno'];
+            $this->direccion = $usuario['Direccion'];
+            $this->telefono = $usuario['Telefono'];
+            $this->email = $usuario['Email'];
+            $this->esActivo = $usuario['EsActivo'];
+
+            return $this;
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
+
 
 }

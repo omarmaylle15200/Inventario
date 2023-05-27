@@ -1,0 +1,17 @@
+DELIMITER //
+create PROCEDURE sp_registrarProveedor(
+    								  in v_idTipoDocumento int,
+    								  in v_numeroDocumento varchar(20),
+    								  in v_nombre varchar(100),
+    								  in v_apellidos varchar(100),
+                                      in v_cargo varchar(100),
+                                      in v_direccion text,
+                                      in v_email varchar(100),
+                                      in v_telefono varchar(20),
+                                      in v_celular varchar(20),
+                                      in v_idUsuarioRegistro int)
+BEGIN
+	insert into proveedor (NumeroDocumento,Nombre,Cargo,Direccion,Email,Telefono,Celular,IdUsuarioRegistro,EsActivo,FechaRegistro)
+    values (v_numeroDocumento,v_nombre,v_cargo,v_direccion,v_email,v_telefono,v_celular,v_idUsuarioRegistro,1,now());
+END 
+//

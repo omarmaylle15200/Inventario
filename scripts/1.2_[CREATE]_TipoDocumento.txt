@@ -1,0 +1,5 @@
+CREATE TABLE TipoDocumento (
+    IdTipoDocumento int AUTO_INCREMENT PRIMARY KEY,
+    Nombre varchar(50),
+    EsActivo bit default 1
+);

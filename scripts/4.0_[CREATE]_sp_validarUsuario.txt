@@ -1,0 +1,29 @@
+DELIMITER //
+create PROCEDURE sp_validarUsuario(
+                                  in v_numeroDocumento varchar(50),
+                                  in v_clave varchar(50))
+BEGIN
+	
+    select 
+    	u.IdUsuario,
+        ifnull(u.IdTipoDocumento,'') IdTipoDocumento,
+        ifnull(td.Nombre,'') TipoDocumento,
+        ifnull(u.NumeroDocumento,'') NumeroDocumento,
+        ifnull(u.IdPerfil,'') IdPerfil,
+        ifnull(p.Nombre,'') NombrePerfil,
+        ifnull(u.Nombre,'') Nombre,
+        ifnull(u.ApellidoPaterno,0) ApellidoPaterno,
+        ifnull(u.ApellidoMaterno,'') ApellidoMaterno,
+        ifnull(u.Direccion,0) Direccion,
+        ifnull(u.Telefono,'') Telefono,
+        ifnull(u.Email,0) Email,
+        ifnull(u.EsActivo,0) EsActivo
+    from usuario u
+    left join perfil p on p.IdPerfil=u.IdPerfil
+    left join tipodocumento td on td.IdTipoDocumento=u.IdTipoDocumento
+    where 
+    u.NumeroDocumento=v_numeroDocumento
+    and u.Clave=MD5(v_clave)
+    limit 1;
+    
+END //

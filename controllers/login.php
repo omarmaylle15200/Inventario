@@ -2,6 +2,7 @@
 <?php
 
 include_once 'dtos/respuestadto.php';
+include_once 'dtos/usuariodto.php';
 
 class Login extends SessionController
 {
@@ -24,25 +25,41 @@ class Login extends SessionController
         header('Content-Type: application/json');
         $content = trim(file_get_contents("php://input"));
         $data = json_decode($content, true);
+        $respuesta = new RespuestaDto();
 
         $numeroDocumento = $data["numeroDocumento"];
         $clave = $data["clave"];
 
-        $expense = new ExpensesModel();
-
-        $respuesta=new RespuestaDto();
-        $respuesta->status=false;
-        $respuesta->message="HI";
-
         //validate data
         if (empty($numeroDocumento) || empty($clave)) {
+            $respuesta->status = false;
+            $respuesta->message = "Completar campos";
             echo json_encode($respuesta);
-            return ;
+            return;
         }
-        $respuesta->status=true;
-        $respuesta->message="OK";
-        echo json_encode($respuesta);
 
+        try {
+            $usuarioModel = new UsuarioModel();
+            $usuario = $usuarioModel->validar($numeroDocumento, $clave);
+
+            $usuarioDto = new UsuarioDto();
+            $usuarioDto->idUsuario = $usuario->idUsuario;
+            $usuarioDto->nombre = $usuario->nombre;
+            $usuarioDto->apellidoPaterno = $usuario->apellidoPaterno;
+            $usuarioDto->apellidoMaterno = $usuario->apellidoMaterno;
+            $usuarioDto->numeroDocumento = $usuario->numeroDocumento;
+            $usuarioDto->email = $usuario->email;
+            $usuarioDto->direccion = $usuario->direccion;
+
+            $respuesta->status = true;
+            $respuesta->message = "OK";
+            $respuesta->detail=$usuarioDto;
+        } catch (Exception $e) {
+            $respuesta->status = false;
+            $respuesta->message = $e->getMessage();
+        }
+
+        echo json_encode($respuesta);
         return;
     }
 

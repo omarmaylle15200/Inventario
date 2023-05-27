@@ -1,0 +1,32 @@
+DELIMITER //
+create PROCEDURE sp_obtenerUsuario(
+                                  in v_idUsuario int)
+BEGIN
+	
+    select 
+    	u.IdUsuario,
+        ifnull(u.IdTipoDocumento,'') IdTipoDocumento,
+        ifnull(td.Nombre,'') TipoDocumento,
+        ifnull(u.NumeroDocumento,'') NumeroDocumento,
+        ifnull(u.IdPerfil,'') IdPerfil,
+        ifnull(p.Nombre,'') NombrePerfil,
+        ifnull(u.Nombre,'') Nombre,
+        ifnull(u.ApellidoPaterno,0) ApellidoPaterno,
+        ifnull(u.ApellidoMaterno,'') ApellidoMaterno,
+        ifnull(u.Direccion,0) Direccion,
+        ifnull(u.Telefono,'') Telefono,
+        ifnull(u.Email,0) Email,
+        ifnull(u.EsActivo,0) EsActivo,
+        ifnull(u.IdUsuarioRegistro,0) IdUsuarioRegistro,
+        ifnull(u.IdUsuarioModificacion,0) IdUsuarioModificacion,
+        u.FechaRegistro,
+        u.FechaModificacion
+    from usuario u
+    left join perfil p on p.IdPerfil=u.IdPerfil
+    left join tipodocumento td on td.IdTipoDocumento=u.IdTipoDocumento
+    where 
+    u.IdUsuario=v_idUsuario
+    limit 1;
+    
+END //
+

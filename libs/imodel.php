@@ -1,11 +1,10 @@
 <?php
     interface IModel{
         
-        public function save();
-        public function getAll();
-        public function get($id);
-        public function delete($id);
-        public function update();
-        public function from($array);
+        public function guardar();
+        public function obtenerTodos();
+        public function obtener($id);
+        public function eliminar($id);
+        public function actualizar();
     }
 ?>

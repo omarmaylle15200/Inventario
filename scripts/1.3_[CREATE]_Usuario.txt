@@ -1,0 +1,21 @@
+CREATE TABLE Usuario (
+    IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    IdTipoDocumento int,
+    NumeroDocumento varchar(20),
+    IdPerfil int,
+    Nombre varchar(50),
+    ApellidoPaterno varchar(100),
+    ApellidoMaterno varchar(100),
+    Direccion text,
+    Telefono varchar(20),
+    Email varchar(100),
+    EsActivo bit default 1,
+    Clave varchar(50),
+    FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FechaModificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    IdUsuarioRegistro int,
+    IdUsuarioModificacion int
+);
+
+ALTER TABLE Usuario ADD CONSTRAINT FK_USUARIO_IDTIPODOCUMENTO FOREIGN KEY (IdTipoDocumento) REFERENCES TipoDocumento(IdTipoDocumento);
+ALTER TABLE Usuario ADD CONSTRAINT FK_USUARIO_IDPERFIL FOREIGN KEY (IdPerfil) REFERENCES Perfil(IdPerfil);

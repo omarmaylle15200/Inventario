@@ -1,0 +1,8 @@
+DELIMITER //
+create PROCEDURE sp_registrarCategoria(in v_nombre varchar(50),
+                                       	in v_descripcion varchar(100),
+                                       in v_idUsuarioRegistro int)
+BEGIN
+	insert into categoria (Nombre,Descripcion,IdUsuarioRegistro)
+    values (v_nombre,v_descripcion,v_idUsuarioRegistro);
+END //

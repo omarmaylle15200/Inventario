@@ -1,0 +1,12 @@
+DELIMITER //
+create PROCEDURE sp_eliminarProducto(in v_idProducto int,in v_esActivo bit,in v_idUsuarioModificacion int)
+BEGIN
+	
+    update producto
+    SET
+    	EsActivo=v_esActivo,
+        FechaModificacion=now(),
+        IdUsuarioModificacion=v_idUsuarioModificacion
+    WHERE
+    IdProducto=v_idProducto;
+END //

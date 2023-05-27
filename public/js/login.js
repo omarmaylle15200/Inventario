@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", async function (event) {
 
 btnIniciarSesion.addEventListener("click", function (e) {
 
-  if(txtUsuario.value==""){
-    swal("Completar campo usuario","","info");
+  if (txtUsuario.value == "") {
+    swal("Completar campo usuario", "", "info");
     return;
   }
-  if(txtClave.value==""){
-    swal("Completar campo clave","","info");
+  if (txtClave.value == "") {
+    swal("Completar campo clave", "", "info");
     return;
   }
   iniciarSesion()
@@ -31,23 +31,26 @@ async function iniciarSesion() {
       'Content-Type': 'application/json'
     }
   });
-  console.log(await request.json())
+  let response = await request.json()
+
+  localStorage.setItem('usuario', JSON.stringify(response.detail));
+  location.href = `main`;
 
 }
 
-txtClave.addEventListener("keypress",function(e){
-  let key=e.keyCode||e.charCode || e.which;
-  if(key==32){
+txtClave.addEventListener("keypress", function (e) {
+  let key = e.keyCode || e.charCode || e.which;
+  if (key == 32) {
     e.preventDefault();
-  }  
+  }
 })
 
-txtUsuario.addEventListener("keypress",function(e){
-  let key=e.keyCode||e.charCode || e.which;
-  if(key==32){
+txtUsuario.addEventListener("keypress", function (e) {
+  let key = e.keyCode || e.charCode || e.which;
+  if (key == 32) {
     e.preventDefault();
-  } 
-  if(key<48 || key>57){
+  }
+  if (key < 48 || key > 57) {
     e.preventDefault();
-  }   
+  }
 })

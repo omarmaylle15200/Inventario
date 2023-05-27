@@ -1,0 +1,4 @@
+set @codigo=(SELECT concat('C',RIGHT(concat('00000',(SELECT COUNT(IdCategoria)+343 from categoria)),5)));
+
+insert into `categoria` (`Codigo`,`Nombre`,`Descripcion`,`IdUsuarioRegistro`,`IdUsuarioModificacion`)
+values (@codigo,'PINTURA','Todas las pinturas',1,1)

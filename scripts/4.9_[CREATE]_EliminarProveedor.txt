@@ -1,0 +1,12 @@
+DELIMITER //
+create PROCEDURE sp_eliminarProveedor(in v_idProveedor int,in v_esActivo bit,in v_idUsuarioModificacion int)
+BEGIN
+	
+    update proveedor
+    SET
+    	EsActivo=v_esActivo,
+        FechaModificacion=now(),
+        IdUsuarioModificacion=v_idUsuarioModificacion
+    WHERE
+    IdProveedor=v_idProveedor;
+END //

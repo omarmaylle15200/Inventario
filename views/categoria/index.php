@@ -15,6 +15,7 @@
     <link href="<?php echo constant('URL'); ?>public/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/93e6a6a9bf.js" crossorigin="anonymous"></script>
 
     <!-- Template Main CSS File -->
     <link href="./public/css/style.css" rel="stylesheet">
@@ -40,20 +41,50 @@
             <div class="row">
                 <div class="col-12">
                     <table id="tblCategoria">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
                     </table>
                 </div>
             </div>
         </section>
 
+        <div class="modal" tabindex="-1" id="mdlCategoria">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Categoría</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row " >
+                            <div class="col-md-6">
+                                <label for="txtNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="txtNombre" required>
+                                <div class="invalid-feedback">
+                                    Completar campo
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="txtDescripcion" class="form-label">Descripción</label>
+                                <input type="text" class="form-control" id="txtDescripcion" required>
+                                <div class="valid-feedback">
+                                Completar campo
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cboEsActivo" class="form-label">Estado</label>
+                                <select class="form-select" id="cboEsActivo" >
+                                    <option value="0">Activo</option>
+                                    <option value="1">Desactivo</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main><!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

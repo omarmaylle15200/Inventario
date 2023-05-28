@@ -50,7 +50,7 @@ class CategoriaModel extends Model{
         }
     }
     
-    public function obtener($idCategoria){
+    public function obtenerPorId($idCategoria){
         try{
             $query = $this->prepare('SELECT * FROM categoria WHERE idCategoria = :idCategoria');
             $query->execute([ 'idCategoria' => $idCategoria]);

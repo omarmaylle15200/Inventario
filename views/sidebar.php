@@ -4,11 +4,11 @@
    <ul class="sidebar-nav" id="sidebar-nav">
 
      <li class="nav-item">
-       <a class="nav-link " href="index.html">
+       <a class="nav-link " href="main">
          <i class="bi bi-grid"></i>
          <span>Inicio</span>
        </a>
-     </li><!-- End Dashboard Nav -->
+     </li>
 
      <li class="nav-item">
        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -21,17 +21,29 @@
            </a>
          </li>
          <li>
-           <a href="proveedor.php">
+           <a href="proveedor">
              <i class="bi bi-circle"></i><span>Proveedor</span>
            </a>
          </li>
          <li>
-           <a href="producto.php">
+           <a href="producto">
              <i class="bi bi-circle"></i><span>Producto</span>
            </a>
          </li>
+         <li>
+           <a href="cliente">
+             <i class="bi bi-circle"></i><span>Cliente</span>
+           </a>
+         </li>
        </ul>
-     </li><!-- End Components Nav -->
+     </li>
+     <li class="nav-item">
+       <a class="nav-link " href="venta">
+         <i class="bi bi-grid"></i>
+         <span>Venta</span>
+       </a>
+     </li>
+
      <li class="nav-heading">Pages</li>
 
      <li class="nav-item">

@@ -1,8 +1,6 @@
 CREATE TABLE Producto (
     IdProducto int AUTO_INCREMENT PRIMARY KEY,
     Codigo VARCHAR(10),
-    CodigoReferencia varchar(20),
-    Modelo VARCHAR(50),
     Nombre varchar(50),
     Descripcion text,
     PrecioCompra  decimal(10,2),

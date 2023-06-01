@@ -25,6 +25,11 @@ require_once 'config/config.php';
 
 include_once 'models/usuariomodel.php';
 include_once "models/categoriamodel.php";
+include_once "models/proveedormodel.php";
+include_once "models/productomodel.php";
+include_once "models/clientemodel.php";
+include_once "models/ventamodel.php";
+include_once "models/tipodocumentoventamodel.php";
 
 $app = new App();
 

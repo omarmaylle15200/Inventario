@@ -4,6 +4,23 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   console.log(usuario)
 });
 
+function soloNumero(e) {
+  key = e.keyCode || e.which || e.keyCode
+  if (key < 48 || key > 57) {
+      e.preventDefault()
+      return false;
+  }
+  return true;
+}
+
+function sinEspacio(e) {
+  key = e.keyCode || e.which || e.keyCode
+  if (key == 32) {
+      e.preventDefault()
+      return false;
+  }
+  return true;
+}
 
 (function () {
   "use strict";

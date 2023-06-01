@@ -24,7 +24,7 @@ class Login extends SessionController
     {
         header('Content-Type: application/json');
         $content = trim(file_get_contents("php://input"));
-        $data = json_decode($content, true);
+        $data = json_decode($content, true);//retorna array
         $respuesta = new RespuestaDto();
 
         $numeroDocumento = $data["numeroDocumento"];

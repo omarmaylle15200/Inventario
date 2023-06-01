@@ -1,16 +1,15 @@
 DELIMITER //
 create PROCEDURE sp_registrarProducto(
-                                      in v_codigoReferencia varchar(50),
-                                      in v_modelo varchar(50),
+                                      in v_codigo varchar(50),
     								  in v_nombre varchar(50),
                                       in v_descripcion text,
-                                      in v_cantidad int,
-                                      in v_idCategoria int,
-                                      in v_idProveedor int,
                                       in v_precioCompra decimal(10,2),
                                       in v_precioVenta decimal(10,2),
+    								  in v_cantidad int,
+    								  in v_idCategoria int,
+                                      in v_idProveedor int,
                                       in v_idUsuarioRegistro int)
 BEGIN
-	insert into producto (Nombre,Descripcion,Modelo,CodigoReferencia,Cantidad,IdCategoria,IdProveedor,PrecioCompra,PrecioVenta,IdUsuarioRegistro,EsActivo,FechaRegistro)
-    values (v_nombre,v_descripcion,v_modelo,v_codigoReferencia,v_cantidad,v_idCategoria,v_idProveedor,v_precioCompra,v_precioVenta,v_idUsuarioRegistro,1,now());
+	insert into producto(Codigo,Nombre,Descripcion,PrecioCompra,PrecioVenta,Cantidad,IdCategoria,IdProveedor,IdUsuarioRegistro)
+    values (v_codigo,v_nombre,v_descripcion,v_precioCompra,v_precioVenta,v_cantidad,v_idCategoria,v_idProveedor,v_idUsuarioRegistro);
 END //

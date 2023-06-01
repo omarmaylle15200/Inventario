@@ -1,5 +1,5 @@
 DELIMITER //
-create PROCEDURE sp_registrarProveedor(
+create PROCEDURE sp_registrarCliente(
     								  in v_numeroDocumento varchar(20),
     								  in v_nombre varchar(100),
                                       in v_direccion text,
@@ -7,7 +7,7 @@ create PROCEDURE sp_registrarProveedor(
                                       in v_telefono varchar(20),
                                       in v_idUsuarioRegistro int)
 BEGIN
-	insert into proveedor (IdTipoDocumento,NumeroDocumento,Nombre,Direccion,Email,Telefono,IdUsuarioRegistro)
+	insert into cliente (IdTipoDocumento,NumeroDocumento,Nombre,Direccion,Email,Telefono,IdUsuarioRegistro)
     values (2,v_numeroDocumento,v_nombre,v_direccion,v_email,v_telefono,v_idUsuarioRegistro);
 END 
 //

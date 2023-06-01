@@ -1,0 +1,5 @@
+create table TipoDocumentoVenta(
+	IdTipoDocumentoVenta int AUTO_INCREMENT PRIMARY KEY,
+    Descripcion VARCHAR(50),
+    EsActivo bit default 1
+)

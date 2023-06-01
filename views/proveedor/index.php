@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Categoria</title>
+    <title>Proveedor</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -29,7 +29,7 @@
     <main id="main" class="main">
 
         <!-- <div class="pagetitle">
-            <h1>Categoria</h1>
+            <h1>Proveedor</h1>
         </div> -->
 
         <section class="section dashboard">
@@ -40,32 +40,53 @@
             </div>
             <div class="row mt-2">
                 <div class="col-12">
-                    <table id="tblCategoria">
+                    <table id="tblProveedor">
                     </table>
                 </div>
             </div>
         </section>
 
-        <div class="modal" tabindex="-1" id="mdlCategoria">
+        <div class="modal" tabindex="-1" id="mdlProveedor">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="tCategoria">Categoría</h5>
+                        <h5 class="modal-title" id="tProveedor">Proveedor</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row mt-2 mb-2">
                             <div class="col-md-4">
+                                <label for="txtNumeroDocumento" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="txtNumeroDocumento" maxlength="11" required>
+                                <div class="invalid-feedback">
+                                    Completar campo
+                                </div>
+                            </div>
+                            <div class="col-md-8">
                                 <label for="txtNombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="txtNombre" required>
                                 <div class="invalid-feedback">
                                     Completar campo
                                 </div>
                             </div>
-                            <div class="col-md-8">
-                                <label for="txtDescripcion" class="form-label">Descripción</label>
-                                <input type="text" class="form-control" id="txtDescripcion" required>
-                                <div class="valid-feedback">
+                            <div class="col-md-6">
+                                <label for="txtDireccion" class="form-label">Direccion</label>
+                                <input type="text" class="form-control" id="txtDireccion">
+                                <div class="invalid-feedback">
+                                    Completar campo
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="txtEmail" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="txtEmail" required>
+                                <div class="invalid-feedback">
+                                    Completar campo
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="txtTelefono" class="form-label">Telefono</label>
+                                <input type="text" class="form-control" id="txtTelefono">
+                                <div class="invalid-feedback">
                                     Completar campo
                                 </div>
                             </div>
@@ -97,7 +118,7 @@
     <!-- Template Main JS File -->
     <script src="./public/js/main.js"></script>
 
-    <script src="./public/js/categoria.js"></script>
+    <script src="./public/js/proveedor.js"></script>
 
 
 </body>

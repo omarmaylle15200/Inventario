@@ -1,32 +1,35 @@
 
-var tblCategoria = document.getElementById("tblCategoria");
-var tblCategoriaData
+var tblCliente = document.getElementById("tblCliente");
+var tblClienteData
 
 const btnNuevo = document.getElementById("btnNuevo")
-const tCategoria = document.getElementById("tCategoria")
+const tCliente = document.getElementById("tCliente")
 
+const txtNumeroDocumento= document.getElementById("txtNumeroDocumento");
 const txtNombre = document.getElementById("txtNombre");
-const txtDescripcion = document.getElementById("txtDescripcion");
+const txtDireccion = document.getElementById("txtDireccion");
+const txtEmail = document.getElementById("txtEmail");
+const txtTelefono = document.getElementById("txtTelefono");
 const cboEsActivo = document.getElementById("cboEsActivo");
 const divActivo = document.getElementById("divActivo");
 
 const btnGuardar = document.getElementById("btnGuardar")
 
-var mdlCategoria = new bootstrap.Modal(document.getElementById("mdlCategoria"), {});
+var mdlCliente = new bootstrap.Modal(document.getElementById("mdlCliente"), {});
 
-var idCategoria = 0;
+var idCliente = 0;
 
 document.addEventListener("DOMContentLoaded", async function (event) {
   limpiar();
 
   inicializarTabla();
-  let categorias = await obtenerTodos();
-  pintarTablaCategoria(categorias);
+  let clientes = await obtenerTodos();
+  pintarTablaCliente(clientes);
 });
 
 
 async function obtenerTodos() {
-  let request = await fetch(`./categoria/obtenerTodos`, {
+  let request = await fetch(`./cliente/obtenerTodos`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -35,32 +38,36 @@ async function obtenerTodos() {
   let response = await request.json();
   return response;
 }
-async function pintarTablaCategoria(categorias) {
+async function pintarTablaCliente(clientes) {
 
-  if (tblCategoriaData) tblCategoriaData.destroy()
+  if (tblClienteData) tblClienteData.destroy()
   inicializarTabla();
 
-  for (const categoria of categorias) {
+  for (const cliente of clientes) {
     let item = []
-    item.push(categoria.codigo)
-    item.push(categoria.nombre)
-    item.push(categoria.descripcion)
+    item.push(cliente.numeroDocumento)
+    item.push(cliente.nombre)
+    item.push(cliente.direccion)
+    item.push(cliente.email)
+    item.push(cliente.telefono)
     item.push(`<div class="d-flex justify-content-center">
-    <button class="btn btn-${(categoria.esActivo ? "success" : "danger")}">${(categoria.esActivo ? "Activo" : "Desactivo")}</button>
+    <button class="btn btn-${(cliente.esActivo ? "success" : "danger")}">${(cliente.esActivo ? "Activo" : "Desactivo")}</button>
     </div>`)
     item.push(`<div class="d-flex justify-content-center">
-      <button class="btn btn-warning btn-mini" onClick="editar(${categoria.idCategoria})"><i class="fa-solid fa-pen-to-square"></i></button>
+      <button class="btn btn-warning btn-mini" onClick="editar(${cliente.idCliente})"><i class="fa-solid fa-pen-to-square"></i></button>
     </div>`)
-    tblCategoriaData.rows.add(item);
+    tblClienteData.rows.add(item);
   }
 }
 function inicializarTabla() {
-  tblCategoriaData = new simpleDatatables.DataTable(tblCategoria, {
+  tblClienteData = new simpleDatatables.DataTable(tblCliente, {
     data: {
       "headings": [
-        "Código",
+        "Número Documento",
         "Nombre",
-        "Descripción",
+        "Direccion",
+        "Email",
+        "Telefono",
         "Estado",
         ""
       ],
@@ -70,22 +77,25 @@ function inicializarTabla() {
   });
 }
 async function editar(id) {
-  idCategoria = id;
+  idCliente = id;
   limpiar();
 
-  let categoria = await obtenerPorId();
-  txtNombre.value = categoria.nombre;
-  txtDescripcion.value = categoria.descripcion;
-  cboEsActivo.value = categoria.esActivo ? 1 : 0;
+  let cliente = await obtenerPorId();
+  txtNumeroDocumento.value = cliente.numeroDocumento;
+  txtNombre.value = cliente.nombre;
+  txtDireccion.value = cliente.direccion;
+  txtEmail.value = cliente.email;
+  txtTelefono.value = cliente.telefono;
+  cboEsActivo.value = cliente.esActivo ? 1 : 0;
 
-  mdlCategoria.show();
+  mdlCliente.show();
 }
 
 async function obtenerPorId() {
-  let request = await fetch(`./categoria/obtenerPorId`, {
+  let request = await fetch(`./cliente/obtenerPorId`, {
     method: 'POST',
     body: JSON.stringify({
-      idCategoria: idCategoria
+      idCliente: idCliente
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -118,28 +128,32 @@ async function validarControl(e) {
 
 function limpiar() {
 
+  txtNumeroDocumento.value = ""
   txtNombre.value = ""
-  txtDescripcion.value = ""
+  txtDireccion.value = ""
+  txtEmail.value = ""
+  txtTelefono.value = ""
   cboEsActivo.value = 0;
   
+  txtNumeroDocumento.classList.remove("is-invalid")
   txtNombre.classList.remove("is-invalid")
-  txtDescripcion.classList.remove("is-invalid")
+  txtEmail.classList.remove("is-invalid")
 
-  if (idCategoria == 0) {
+  if (idCliente == 0) {
     divActivo.style.display="none";
-    tCategoria.innerText = "Nuevo";
+    tCliente.innerText = "Nuevo";
     btnGuardar.innerText = "Registrar";
     return;
   }
   divActivo.style.display="block";
-  tCategoria.innerText = "Edición";
+  tCliente.innerText = "Edición";
   btnGuardar.innerText = "Modificar";
 }
 
-async function registrar(categoria) {
-  let request = await fetch(`./categoria/registrar`, {
+async function registrar(cliente) {
+  let request = await fetch(`./cliente/registrar`, {
     method: 'POST',
-    body: JSON.stringify(categoria),
+    body: JSON.stringify(cliente),
     headers: {
       'Content-Type': 'application/json'
     }
@@ -148,10 +162,10 @@ async function registrar(categoria) {
   return response;
 }
 
-async function modificar(categoria) {
-  let request = await fetch(`./categoria/modificar`, {
+async function modificar(cliente) {
+  let request = await fetch(`./cliente/modificar`, {
     method: 'POST',
-    body: JSON.stringify(categoria),
+    body: JSON.stringify(cliente),
     headers: {
       'Content-Type': 'application/json'
     }
@@ -168,17 +182,20 @@ controles.forEach(control => {
 });
 
 btnNuevo.addEventListener("click", async function (e) {
-  idCategoria = 0;
+  idCliente = 0;
   limpiar();
-  mdlCategoria.show();
+  mdlCliente.show();
 })
 
 btnGuardar.addEventListener("click", async function (e) {
 
-  let categoria = {
-    idCategoria: idCategoria,
+  let cliente = {
+    idCliente: idCliente,
+    numeroDocumento: txtNumeroDocumento.value,
     nombre: txtNombre.value,
-    descripcion: txtDescripcion.value,
+    direccion: txtDireccion.value,
+    email: txtEmail.value,
+    telefono: txtTelefono.value,
     esActivo: cboEsActivo.value == 1 ? true : false,
     idUsuarioRegistro: usuario.idUsuario,
     idUsuarioModificacion: usuario.idUsuario
@@ -187,8 +204,8 @@ btnGuardar.addEventListener("click", async function (e) {
   if ((await validar()).length > 0) return;
 
   const willSave = await swal({
-    title: `${idCategoria == 0 ? "Registrar" : "Modificar"}`,
-    text: `¿Estás seguro de que deseas ${idCategoria == 0 ? "registrar" : "modificar"} categoría?`,
+    title: `${idCliente == 0 ? "Registrar" : "Modificar"}`,
+    text: `¿Estás seguro de que deseas ${idCliente == 0 ? "registrar" : "modificar"} cliente?`,
     icon: "info",
     buttons: {
       cancel: {
@@ -209,17 +226,17 @@ btnGuardar.addEventListener("click", async function (e) {
   if (!willSave) return;
 
   let response;
-  if (idCategoria == 0) response = await registrar(categoria)
-  else response = await modificar(categoria)
+  if (idCliente == 0) response = await registrar(cliente)
+  else response = await modificar(cliente)
 
   if (!response.status) {
     swal("", response.message, "warning");
     return;
   }
   swal("", response.message, "success");
-  mdlCategoria.hide();
+  mdlCliente.hide();
 
-  let categorias = await obtenerTodos();
-  pintarTablaCategoria(categorias);
+  let clientes = await obtenerTodos();
+  pintarTablaCliente(clientes);
 
 })

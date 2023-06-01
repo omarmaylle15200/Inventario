@@ -41,6 +41,25 @@ class Categoria extends SessionController
         echo json_encode($lstCategorias);
         return;
     }
+    function obtenerActivos()
+    {
+        $lstCategorias = [];
+        try {
+            $categoriaModel = new CategoriaModel();
+            $categorias = $categoriaModel->obtenerActivos();
+
+            foreach ($categorias as $categoria) {
+                $categoriaDto = new CategoriaDto();
+                $categoriaDto->idCategoria = $categoria->idCategoria;
+                $categoriaDto->codigo = $categoria->codigo;
+                $categoriaDto->nombre = $categoria->nombre;
+                array_push($lstCategorias, $categoriaDto);
+            }
+        } catch (Exception $e) {
+        }
+        echo json_encode($lstCategorias);
+        return;
+    }
     function obtenerPorId()
     {
         header('Content-Type: application/json');
@@ -65,6 +84,48 @@ class Categoria extends SessionController
             $categoriaDto=null;
         }
         echo json_encode($categoriaDto);
+        return;
+    }
+    function registrar()
+    {
+        header('Content-Type: application/json');
+        $content = trim(file_get_contents("php://input"));
+        $categoria = json_decode($content);//retorna objeto
+        //$categoria = json_decode($content,true);//retorna array
+        $respuesta = new RespuestaDto();
+
+        try {
+            $categoriaModel = new CategoriaModel();
+            $categoriaModel->registrar($categoria);
+
+            $respuesta->status = true;
+            $respuesta->message = "Registrado correctamente";
+        } catch (Exception $e) {
+            $respuesta->status = false;
+            $respuesta->message =$e->getMessage();
+        }
+        echo json_encode($respuesta);
+        return;
+    }
+    function modificar()
+    {
+        header('Content-Type: application/json');
+        $content = trim(file_get_contents("php://input"));
+        $categoria = json_decode($content);//retorna objeto
+        //$categoria = json_decode($content,true);//retorna array
+        $respuesta = new RespuestaDto();
+
+        try {
+            $categoriaModel = new CategoriaModel();
+            $categoriaModel->actualizar($categoria);
+
+            $respuesta->status = true;
+            $respuesta->message = "Actualizado correctamente";
+        } catch (Exception $e) {
+            $respuesta->status = false;
+            $respuesta->message =$e->getMessage();
+        }
+        echo json_encode($respuesta);
         return;
     }
 }

@@ -1,5 +1,5 @@
 DELIMITER //
-create PROCEDURE sp_modificarProveedor(in v_idProveedor int,
+create PROCEDURE sp_modificarCliente(in v_idCliente int,
                                       in v_numeroDocumento varchar(20),
     								  in v_nombre varchar(100),
                                       in v_direccion text,
@@ -9,7 +9,7 @@ create PROCEDURE sp_modificarProveedor(in v_idProveedor int,
                                       in v_idUsuarioModificacion int)
 BEGIN
 	
-    update proveedor
+    update cliente
     SET
     	NumeroDocumento=v_numeroDocumento,
     	Nombre=v_nombre,
@@ -20,5 +20,5 @@ BEGIN
         FechaModificacion=now(),
         IdUsuarioModificacion=v_idUsuarioModificacion
     WHERE
-    IdProveedor=v_idProveedor;
+    IdCliente=v_idCliente;
 END //

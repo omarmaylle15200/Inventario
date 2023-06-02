@@ -1,7 +1,0 @@
-CREATE TABLE Perfil (
-    IdPerfil int AUTO_INCREMENT PRIMARY KEY,
-    Nombre varchar(50),
-    EsActivo bit DEFAULT 1,
-    FechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FechaModificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);

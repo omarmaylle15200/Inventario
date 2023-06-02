@@ -1,6 +1,0 @@
-set @idTipoDocumento = (SELECT IdTipoDocumento FROM tipodocumento WHERE nombre='DNI');
-set @idPerfil = (SELECT IdPerfil FROM perfil WHERE nombre='Administrador');
-
-
-INSERT INTO `usuario`( `IdTipoDocumento`,NumeroDocumento, `IdPerfil`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Direccion`, `Telefono`, `Email`,Clave) 
-VALUES (@idTipoDocumento,'75586628',@idPerfil,'Omar Daniel','Maylle','Iguavel','mz 70 lt','930851860','omarmi@gmail.com',md5('75586628'))

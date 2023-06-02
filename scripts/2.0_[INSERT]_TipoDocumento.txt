@@ -1,3 +1,0 @@
-insert into `tipodocumento` (nombre)
-values ('DNI'),
-('RUC')

@@ -114,7 +114,7 @@ class VentaModel extends Model
     public function registrarDetalle($venta)
     {
         try {
-            $query = $this->prepare("INSERT INTO ventadetalle (IdVenta,Item,IdProducto,Cantidad,Precio) VALUES (?,?,?,?,?)");
+            $query = $this->prepare("call sp_registrarVentaDetalle(?,?,?,?,?)");
             $item = 1;
             foreach ($venta->ventaDetalle as $producto) {
                 $query->bindParam(1, $venta->idVenta, PDO::PARAM_INT);

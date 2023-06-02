@@ -1,1 +1,0 @@
-default(concat('C',RIGHT(concat('00000',IdProveedor),6)))

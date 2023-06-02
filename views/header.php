@@ -24,16 +24,16 @@
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
-            <h6 id="hUsuario">Kevin Anderson</h6>
-            <span id="spPerfil">Web Designer</span>
+          <li class="dropdown-header" style="display: none;">
+            <h6 id="hUsuario"></h6>
+            <span id="spPerfil"></span>
           </li>
           <li>
             <hr class="dropdown-divider">
           </li>
           <li>
             <div class="d-grid gap-1">
-              <button class="btn btn-secondary btn-block">
+              <button class="btn btn-secondary btn-block" id="btnSalir">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Salir</span>
               </button>

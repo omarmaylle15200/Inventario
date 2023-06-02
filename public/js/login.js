@@ -33,9 +33,13 @@ async function iniciarSesion() {
   });
   let response = await request.json()
 
+  if(!response.status){
+    swal("", response.message, "info");
+    return;
+  }
+
   localStorage.setItem('usuario', JSON.stringify(response.detail));
   location.href = `main`;
-
 }
 
 txtClave.addEventListener("keypress", function (e) {

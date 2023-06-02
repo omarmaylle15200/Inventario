@@ -219,7 +219,6 @@ controles.forEach(control => {
 
 btnGuardar.addEventListener("click", async function (e) {
 
-
   if ((validar()).length > 0) return;
   if (productos.length <= 0) {
     swal("", "Debe agregar al menos 1 producto", "info");
@@ -266,9 +265,8 @@ btnGuardar.addEventListener("click", async function (e) {
     return;
   }
   swal("", response.message, "success");
-
   limpiar()
-
+  location.href = `../venta`;
 
 })
 

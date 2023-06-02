@@ -24,7 +24,7 @@ class Login extends SessionController
     {
         header('Content-Type: application/json');
         $content = trim(file_get_contents("php://input"));
-        $data = json_decode($content, true);//retorna array
+        $data = json_decode($content, true); //retorna array
         $respuesta = new RespuestaDto();
 
         $numeroDocumento = $data["numeroDocumento"];
@@ -41,6 +41,12 @@ class Login extends SessionController
         try {
             $usuarioModel = new UsuarioModel();
             $usuario = $usuarioModel->validar($numeroDocumento, $clave);
+            if ($usuario->idUsuario == null) {
+                $respuesta->status = false;
+                $respuesta->message = "Usuario o clave incorrecto";
+                echo json_encode($respuesta);
+                return;
+            }
 
             $usuarioDto = new UsuarioDto();
             $usuarioDto->idUsuario = $usuario->idUsuario;
@@ -53,7 +59,7 @@ class Login extends SessionController
 
             $respuesta->status = true;
             $respuesta->message = "OK";
-            $respuesta->detail=$usuarioDto;
+            $respuesta->detail = $usuarioDto;
         } catch (Exception $e) {
             $respuesta->status = false;
             $respuesta->message = $e->getMessage();

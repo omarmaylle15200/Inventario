@@ -4,7 +4,7 @@
    <ul class="sidebar-nav" id="sidebar-nav">
 
      <li class="nav-item">
-       <a class="nav-link " href="main">
+       <a class="nav-link " href="<?php echo constant('URL'); ?>main">
          <i class="bi bi-grid"></i>
          <span>Inicio</span>
        </a>
@@ -16,22 +16,22 @@
        </a>
        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
          <li>
-           <a href="categoria">
+           <a href="<?php echo constant('URL'); ?>categoria">
              <i class="bi bi-circle"></i><span>Categoria</span>
            </a>
          </li>
          <li>
-           <a href="proveedor">
+           <a href="<?php echo constant('URL'); ?>proveedor">
              <i class="bi bi-circle"></i><span>Proveedor</span>
            </a>
          </li>
          <li>
-           <a href="producto">
+           <a href="<?php echo constant('URL'); ?>producto">
              <i class="bi bi-circle"></i><span>Producto</span>
            </a>
          </li>
          <li>
-           <a href="cliente">
+           <a href="<?php echo constant('URL'); ?>cliente">
              <i class="bi bi-circle"></i><span>Cliente</span>
            </a>
          </li>
@@ -54,16 +54,6 @@
          </li>
        </ul>
      </li>
-
-     <li class="nav-heading">Pages</li>
-
-     <li class="nav-item">
-       <a class="nav-link collapsed" href="users-profile.html">
-         <i class="bi bi-person"></i>
-         <span>Profile</span>
-       </a>
-     </li><!-- End Profile Page Nav -->
-
 
    </ul>
 

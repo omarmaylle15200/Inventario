@@ -1,14 +1,51 @@
 const usuario = JSON.parse(localStorage.getItem("usuario"))
+const spUsuario = document.getElementById("spUsuario")
+const hUsuario = document.getElementById("hUsuario")
+const spPerfil = document.getElementById("spPerfil")
+
+const btnSalir = document.getElementById("btnSalir")
+
+var URLHost = window.location.protocol + "//" + window.location.host + "/Inventario";
 
 document.addEventListener("DOMContentLoaded", async function (event) {
-  console.log(usuario)
+  spUsuario.innerHTML = `${usuario.nombre} ${usuario.apellidoPaterno} ${usuario.apellidoMaterno}`;
+  hUsuario.innerHTML = ``;
+  spPerfil.innerHTML = ``;
+
 });
+
+btnSalir.addEventListener("click", async function (e) {
+
+  const close = await swal({
+    title: `Salir`,
+    text: `¿Estás seguro de que deseas salir`,
+    icon: "info",
+    buttons: {
+      cancel: {
+        text: "Cancelar",
+        value: false,
+        visible: true,
+        closeModal: true,
+      },
+      confirm: {
+        text: "OK",
+        value: true,
+        visible: true,
+        closeModal: true
+      },
+    }
+  });
+  if (!close) return;
+
+  location.href = `${URLHost}`;
+
+})
 
 function soloNumero(e) {
   key = e.keyCode || e.which || e.keyCode
   if (key < 48 || key > 57) {
-      e.preventDefault()
-      return false;
+    e.preventDefault()
+    return false;
   }
   return true;
 }
@@ -16,8 +53,8 @@ function soloNumero(e) {
 function sinEspacio(e) {
   key = e.keyCode || e.which || e.keyCode
   if (key == 32) {
-      e.preventDefault()
-      return false;
+    e.preventDefault()
+    return false;
   }
   return true;
 }

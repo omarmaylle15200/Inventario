@@ -30,6 +30,7 @@ include_once "models/productomodel.php";
 include_once "models/clientemodel.php";
 include_once "models/ventamodel.php";
 include_once "models/tipodocumentoventamodel.php";
+include_once "models/ventadetallemodel.php";
 
 $app = new App();
 

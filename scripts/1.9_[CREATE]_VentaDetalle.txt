@@ -5,7 +5,7 @@ CREATE TABLE VentaDetalle (
     IdProducto INT,
     Cantidad int,
     Precio decimal(10,2),
-    SubTotal decimal(10,2)
+    SubTotal decimal(10,2) as (Precio * Cantidad) 
 );
 
 ALTER TABLE ventadetalle ADD FOREIGN KEY (IdVenta) REFERENCES venta(IdVenta);
